@@ -1,4 +1,5 @@
 import axios from 'axios'
+import router from 'vue-router'
 
 import {
   Message
@@ -21,15 +22,24 @@ const fetch = {
     })
 
   },
-  post(url, data, config) {
+  post(url, data, config, methods = 'post') {
     return new Promise((resolve, rejects) => {
-      instance.post(url, data, config)
+      instance[methods](url, data, config)
         .then(res => {
-          resolve(res.data)
+          if (res.code == 401) {
+            this.$router.push({
+              path: "/"
+            });
+          } else {
+            resolve(res.data)
+          }
         }).catch(err => {
           rejects(err)
         })
     })
+  },
+  put(url, data, config) {
+    return this.post(url, data, config, 'put')
   }
 
 }

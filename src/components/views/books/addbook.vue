@@ -12,7 +12,7 @@
        </div>
        <div class="item">
             <span>书名：</span>
-            <el-input type="text" placeholder="请输入书名" v-model="books.title"> </el-input>
+            <el-input type="text" placeholder="请输入书名" v-model="books.desc"> </el-input>
        </div>
        <div class="item">
            <span>作者：</span>
@@ -46,7 +46,7 @@ export default {
   data() {
     return {
       books: {
-        title: "",
+        desc: "",
         img: "",
         author: "",
         typeId: "",

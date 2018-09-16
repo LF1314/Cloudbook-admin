@@ -28,13 +28,29 @@
       prop="book.author"
       label="作者">
     </el-table-column>
+     <el-table-column
+      label="操作">
+      <template slot-scope="scope">
+        <el-button type="info">
+          查看详情
+        </el-button>
+          <el-button type="success">
+          修改
+        </el-button>
+      </template>
+    </el-table-column>
   </el-table>
 
+<div class="block">
 
+  <el-pagination
+    layout="prev, pager, next"
+    @current-change='current'
+    :total="100">
+  </el-pagination>
 </div>
-    
+</div>  
 </template>
-
 <script>
 export default {
   name: "swperlist",
@@ -45,10 +61,23 @@ export default {
     };
   },
   created() {
-    this.$axios.get("/swiper", { pn: this.pn, size: 5 }).then(res => {
-      console.log(res.data);
-      this.swperData = res.data;
-    });
+    this.getswper(this.pn);
+  },
+  methods: {
+    getswper(pns) {
+      this.$axios.get("/swiper", { pn: pns, size: 5 }).then(res => {
+        // console.log(res.data);
+        this.swperData = res.data;
+        if (res.data.length == 0) {
+          this.$message.error("到底了！！！！");
+        }
+      });
+    },
+    prepage(e) {},
+    current(e) {
+      // console.log(e);
+      this.getswper(e);
+    }
   }
 };
 </script>
@@ -64,5 +93,14 @@ export default {
   font-weight: 400;
   line-height: 30px;
   border-bottom: 1px solid #f3f3f3;
+}
+.swperwraper {
+  position: relative;
+  padding-bottom: 70px;
+}
+.block {
+  position: absolute;
+  bottom: 20px;
+  right: 0;
 }
 </style>

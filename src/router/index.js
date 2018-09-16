@@ -83,6 +83,28 @@ export default new Router({
           name: 'changeclass',
           component: () =>
             import ('@/components/views/bookclass/changeclass')
+        },
+        //书籍列表
+        {
+          path: 'booklist',
+          name: 'booklist',
+          component: () =>
+            import ('@/components/views/books/booklist')
+        }
+        //添加分类
+        ,
+        {
+          path: 'addclass',
+          name: 'addclass',
+          component: () =>
+            import('@/components/views/bookclass/addclass')
+        },
+        //添加轮播图
+        , {
+          path: 'addswper',
+          name: 'addswper',
+          component: () =>
+            import('@/components/views/swper/addswper')
         }
 
 

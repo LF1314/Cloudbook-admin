@@ -26,7 +26,7 @@
         </div>
        <div class="item">
            <span>确认密码：</span>
-           <el-input type="password" ></el-input>
+           <el-input type="password" v-model='curentpasswod'></el-input>
            </div>
             <div class="item"><span>描述：</span><el-input type="textarea" v-model="infoData.desc"></el-input></div>
    <div class="btn">
@@ -53,6 +53,7 @@ import pic from "../pic/pic";
 export default {
   data() {
     return {
+      curentpasswod:'',
       infoData: {
         avatar: "",
         username: "",
@@ -68,7 +69,9 @@ export default {
   },
   methods: {
     addadmin() {
-      this.$axios.post("/user", this.infoData).then(res => {
+      if(this.curentpasswod == this.infoData.password)
+    {
+        this.$axios.post("/user", this.infoData).then(res => {
         if (res.code == 200) {
           this.$message({
             showClose: true,
@@ -80,6 +83,12 @@ export default {
           },1000);
         }
       });
+    }
+    else{    
+       this.$message.error('两次输入的密码不一样哦！')
+       this.curentpasswod = ''   
+
+    }
     }
   }
 };

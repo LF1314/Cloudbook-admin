@@ -11,10 +11,15 @@
     :data="classData"
     border
     style="width: 100%">
-    <el-table-column
-     
+     <el-table-column
+      prop = 'index'
+      label="索引"
+      width="80">
+    </el-table-column>
+    <el-table-column 
       label="封面"
-      width="150">
+      width="120"
+      >
       <template slot-scope="scope">
           <img :src="scope.row.icon" alt="封面" class="iconimg">
       </template>
@@ -79,6 +84,7 @@ export default {
 <style>
 .iconimg {
   height: 80px;
+  background-origin: border-box;
 }
 .navto {
   height: 20px;

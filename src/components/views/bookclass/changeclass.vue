@@ -16,7 +16,7 @@
       <div>
            
          <img :src="datas.icon" alt="icon" class="iconimg">
-          <i>原本图片</i>
+          <span>封面</span>
       </div>
         
 
@@ -38,8 +38,8 @@
       
       
          <div>
-           <el-button type="success" class="btn" >
-               提交 
+           <el-button type="success" class="btn" @click="updataclass">
+               更新 
            </el-button>
  
       
@@ -65,7 +65,7 @@ export default {
     pic
   },
   created() {
-    console.log(this.$route.query.id);
+    // console.log(this.$route.query.id);
     this.typeid = this.$route.query.id;
     this.gettype();
   },
@@ -75,6 +75,13 @@ export default {
         console.log(res.data);
         this.datas = res.data;
         console.log(this.datas);
+      });
+    },
+    updataclass() {
+      this.$axios.put(`/category/${this.typeid}`, this.datas).then(res => {
+        if (res.code == 200) {
+          this.$router.push({path:"classlist"});
+        }
       });
     }
   }
@@ -91,6 +98,8 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-size: 12px;
+  color: #444;
 }
 .iconimg {
   width: 100px;
@@ -111,14 +120,14 @@ export default {
 .item span {
   display: inline-block;
   width: 100px;
-  line-height: 100%;
-  height: 100%;
+  line-height: 40px;
+  height: 40px;
 }
 .item1 {
   width: 300px;
 }
 .item2 {
-  width: 200px;
+  width: 260px;
 }
 .userinfo {
   padding: 40px;
@@ -127,8 +136,7 @@ export default {
   margin: 0 auto;
 }
 .btn {
-  width: 200px;
-
-  margin: 10px auto 0;
+  width: 100px;
+  margin-left: 70px;
 }
 </style>
