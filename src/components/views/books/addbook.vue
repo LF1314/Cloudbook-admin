@@ -28,7 +28,7 @@
        </div>
          
  
-           <el-button type="success" class="btn" @click="addbook">
+           <el-button type="success" class="btn11" @click="addbook">
                提交 
            </el-button>
  
@@ -92,7 +92,7 @@ export default {
   width: 150px;
   text-align: right;
 }
-.btn {
+.btn11 {
   margin-top: 10px;
   box-sizing: border-box;
   width: 75%;

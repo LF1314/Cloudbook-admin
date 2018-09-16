@@ -17,6 +17,11 @@ const fetch = {
           params: data
         }, config)
         .then(res => {
+          if (res.code == 401) {
+            this.$router.push({
+              path: "/"
+            });
+          }
           resolve(res.data)
         })
     })

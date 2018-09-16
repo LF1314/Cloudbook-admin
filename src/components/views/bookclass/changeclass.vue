@@ -1,6 +1,6 @@
 <template>
     
- <div class="wraper">
+ <div class="wrapers">
  <div class="navto">
   <el-breadcrumb separator-class="el-icon-arrow-right">
   <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
@@ -12,10 +12,10 @@
        修改分类
    </h3>
    <div class="userinfo">
-       <div class="userimg">
+       <div class="userimgss">
       <div>
            
-         <img :src="datas.icon" alt="icon" class="iconimg">
+         <img :src="datas.icon" alt="icon" class="iconimgs">
           <span>封面</span>
       </div>
         
@@ -80,7 +80,7 @@ export default {
     updataclass() {
       this.$axios.put(`/category/${this.typeid}`, this.datas).then(res => {
         if (res.code == 200) {
-          this.$router.push({path:"classlist"});
+          this.$router.push({ path: "classlist" });
         }
       });
     }
@@ -89,11 +89,11 @@ export default {
 </script>
 
 <style scope>
-.userimg {
+.userimgss {
   display: flex;
   justify-content: space-around;
 }
-.userimg div {
+.userimgss div {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -101,10 +101,10 @@ export default {
   font-size: 12px;
   color: #444;
 }
-.iconimg {
+.iconimgs {
   width: 100px;
 }
-.wraper {
+.wrapers {
   padding-left: 10px;
 }
 .navto {

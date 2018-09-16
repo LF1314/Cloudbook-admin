@@ -2,7 +2,7 @@
 <div class="swperwraper">
     <div class="breadhead">
  <el-breadcrumb separator-class="el-icon-arrow-right">
-  <el-breadcrumb-item :to="{ path: '/index' }">首页</el-breadcrumb-item>
+  <el-breadcrumb-item :to="{ path: 'index' }">首页</el-breadcrumb-item>
   <el-breadcrumb-item>轮播图列表</el-breadcrumb-item>
  
 </el-breadcrumb>
@@ -85,7 +85,8 @@ export default {
 
 <style scope>
 .swperimg {
-  width: 150px;
+  height: 50px;
+  width: 50px;
 }
 .breadhead {
   height: 20px;

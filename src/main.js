@@ -5,14 +5,15 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import store from './store/index'
 Vue.use(ElementUI);
 import {
   $axios
 } from './until/until.js'
 
 Vue.config.productionTip = false
-
 Vue.prototype.$axios = $axios
+Vue.prototype.$store = store
 
 /* eslint-disable no-new */
 new Vue({

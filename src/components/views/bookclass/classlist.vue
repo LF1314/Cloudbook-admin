@@ -83,7 +83,7 @@ export default {
 
 <style>
 .iconimg {
-  height: 80px;
+  height: 50px;
   background-origin: border-box;
 }
 .navto {

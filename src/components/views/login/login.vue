@@ -30,6 +30,7 @@ export default {
   name: "login",
   data() {
     return {
+      userdata: {},
       ruleForm: {
         username: "",
         password: ""
@@ -41,6 +42,8 @@ export default {
       this.$axios.post("/login", this.ruleForm).then(res => {
         console.log(res);
         if (res.code == 200) {
+          this.$store.state.userinfo = res.data;
+
           this.$message({
             showClose: true,
             message: "登录成功！",
@@ -48,7 +51,7 @@ export default {
           });
           setTimeout(() => {
             this.$router.push({ path: "/home" });
-          });
+          }, 2000);
         }
       });
     }

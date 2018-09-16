@@ -1,5 +1,5 @@
 <template>
-<div class="wraper">
+<div>
     <div>
         <h3>书籍列表</h3>
     </div>
@@ -72,6 +72,6 @@ export default {
 
 <style>
 .bookimg {
-  height: 80px;
+  height: 40px;
 }
 </style>
