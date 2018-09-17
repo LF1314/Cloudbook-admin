@@ -13,12 +13,13 @@ import {
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = $axios
-Vue.prototype.$store = store
+
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: {
     App
   },

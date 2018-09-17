@@ -44,9 +44,10 @@
 <div class="block">
 
   <el-pagination
+    :page-size='size'
     layout="prev, pager, next"
     @current-change='current'
-    :total="100">
+    :total="15">
   </el-pagination>
 </div>
 </div>  
@@ -57,7 +58,8 @@ export default {
   data() {
     return {
       swperData: [],
-      pn: 1
+      pn: 1,
+      size: 5
     };
   },
   created() {
@@ -66,7 +68,7 @@ export default {
   methods: {
     getswper(pns) {
       this.$axios.get("/swiper", { pn: pns, size: 5 }).then(res => {
-        // console.log(res.data);
+        console.log(res);
         this.swperData = res.data;
         if (res.data.length == 0) {
           this.$message.error("到底了！！！！");
@@ -96,7 +98,6 @@ export default {
   border-bottom: 1px solid #f3f3f3;
 }
 .swperwraper {
-  position: relative;
   padding-bottom: 70px;
 }
 .block {

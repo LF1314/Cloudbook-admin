@@ -1,5 +1,6 @@
 <template>
 <div>
+<div style=" padding-bottom: 70px;">
     <div class="navto">
   <el-breadcrumb separator-class="el-icon-arrow-right">
   <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
@@ -18,7 +19,7 @@
     </el-table-column>
     <el-table-column 
       label="封面"
-      width="120"
+      width="140"
       >
       <template slot-scope="scope">
           <img :src="scope.row.icon" alt="封面" class="iconimg">
@@ -27,7 +28,7 @@
     <el-table-column
       prop="title"
       label="类名"
-      width="180">
+      width="260">
     </el-table-column>
     <el-table-column
      width="130"
@@ -38,15 +39,26 @@
       label="操作">
       <template slot-scope="scope">
           <el-button type="success" @click="cometodetail(scope.row._id,classdetail)">查看详情</el-button>
-          <el-button type="waring">删除</el-button>
-          <el-button type="wring" @click="cometodetail(scope.row._id,changeclass)">编辑</el-button>
-          
-          
+          <el-button type="danger" @click="delteclass(scope.row._id)">删除</el-button>
+          <el-button type="warning" @click="cometodetail(scope.row._id,changeclass)">编辑</el-button>
+   
       </template>
     </el-table-column>
   </el-table>
 </template>
+
 </div>
+
+<div class="block">
+  <el-pagination
+    :page-size='size'
+    layout="prev, pager, next"
+    @current-change='current'
+    :total="15">
+  </el-pagination>
+</div>
+</div>
+
  
 </template>
 
@@ -60,23 +72,38 @@ export default {
       classdetail: "classdetail",
       changeclass: "changeclass",
       classData: [],
-      pn: 1
+      pn: 1,
+      size: 6
     };
   },
 
   methods: {
-    getdata() {
-      this.$axios.get("/category", { pn: this.pn, size: 9 }).then(res => {
-        console.log(res.data);
+    //获取分类
+    getdata(pns) {
+      this.$axios.get("/category", { pn: pns, size: this.size }).then(res => {
+        console.log(res);
         this.classData = res.data;
       });
     },
+    //查看详情&&修改分类
     cometodetail(id, rout) {
       this.$router.push({ path: rout, query: { id: id } });
+    },
+    //删除分类
+    delteclass(id) {
+      this.$axios.delete(`/category/${id}`).then(res => {
+        if (res.code == 200) {
+          this.$message.success({ message: "删除成功！" });
+          this.getdata();
+        }
+      });
+    },
+    current(e) {
+      this.getdata(e);
     }
   },
   created() {
-    this.getdata();
+    this.getdata(this.pn);
   }
 };
 </script>
@@ -84,13 +111,21 @@ export default {
 <style>
 .iconimg {
   height: 50px;
+  width: 50px;
+  border-radius: 10%;
   background-origin: border-box;
 }
 .navto {
   height: 20px;
   padding: 10px;
+
   font-weight: 400;
   line-height: 30px;
+}
+.block {
+  position: fixed;
+  bottom: 20px;
+  right: 0;
 }
 </style>
 

@@ -11,9 +11,9 @@ const instance = axios.create({
 })
 
 const fetch = {
-  get(url, data, config) {
+  get(url, data, config, methods = 'get') {
     return new Promise((resolve, reject) => {
-      instance.get(url, {
+      instance[methods](url, {
           params: data
         }, config)
         .then(res => {
@@ -45,6 +45,9 @@ const fetch = {
   },
   put(url, data, config) {
     return this.post(url, data, config, 'put')
+  },
+  delete(url, data, config) {
+    return this.get(url, data, config, 'delete')
   }
 
 }

@@ -13,6 +13,7 @@
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item @click.native="usein">用户信息</el-dropdown-item>
         <el-dropdown-item @click.native="loginout">注销登陆</el-dropdown-item>
+        <el-dropdown-item @click.native="changemessage">修改信息</el-dropdown-item>
         
       </el-dropdown-menu>
     </el-dropdown>
@@ -78,17 +79,17 @@
                 </el-menu-item-group>
           </el-submenu>
 
-              <!-- <el-submenu index="5">
+              <el-submenu index="5">
                   <template slot="title">
-                      <i class="el-icon-setting"></i>
-                <span>用户管理</span>
+                     
+                <span>测试</span>
                   </template>
                     <el-menu-item-group>
-                  <template slot="title">用户管理</template>
-                  <el-menu-item index="">用户列表</el-menu-item>
-                  <el-menu-item index="">33</el-menu-item>
+                  <template slot="title">图片上传</template>
+                  <el-menu-item index="uploadimg">图片上传</el-menu-item>
+                  <el-menu-item index="">组件</el-menu-item>
                 </el-menu-item-group>
-              </el-submenu> -->
+              </el-submenu>
 
        </el-menu>
 
@@ -117,13 +118,16 @@ export default {
       this.$axios.get("/logout").then(res => {
         console.log(res);
         if (res.code == 400) {
-          this.$router.push({ path: "/" });
+          this.$router.push("/");
         }
       });
       console.log("...");
     },
     usein() {
       this.$router.push({ path: "index" });
+    },
+    changemessage() {
+      this.$router.push({ path: "editadmin" });
     }
   }
 };
@@ -153,7 +157,7 @@ export default {
   vertical-align: middle;
 }
 .usermessage {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 40px;
   display: inline-block;

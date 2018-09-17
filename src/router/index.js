@@ -90,6 +90,12 @@ export default new Router({
           name: 'booklist',
           component: () =>
             import ('@/components/views/books/booklist')
+        },
+        {
+          path: 'editbook',
+          name: 'editbook',
+          component: () =>
+            import ('@/components/views/books/editbook')
         }
         //添加分类
         ,
@@ -105,6 +111,22 @@ export default new Router({
           name: 'addswper',
           component: () =>
             import('@/components/views/swper/addswper')
+        }
+        //修改个人信息
+        ,
+        {
+          path: 'editadmin',
+          name: "editadmin",
+          component: () =>
+            import('@/components/views/admin/editadmin')
+        }
+        //测试页面
+        ,
+        {
+          path: 'uploadimg',
+          name: 'uploadimg',
+          component: () =>
+            import ('@/components/views/test/uploadimg')
         }
 
 

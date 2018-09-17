@@ -34,6 +34,11 @@ export default {
       }
     };
   },
+  watch: {
+    value(val) {
+      this.imageUrl = val;
+    }
+  },
   methods: {
     getToken() {
       axios.get("http://upload.yaojunrong.com/getToken").then(res => {

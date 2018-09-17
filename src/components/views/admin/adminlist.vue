@@ -1,7 +1,7 @@
 
 <template>
 
-<div class="userlist">
+<div class="userlist" style="padding-bottom:70px;">
  <div class="navto">
   <el-breadcrumb separator-class="el-icon-arrow-right">
   <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
@@ -40,7 +40,14 @@
       </template>
     </el-table-column>
   </el-table>
-
+<div class="block">
+  <el-pagination
+    :page-size='size'
+    layout="prev, pager, next"
+    @current-change='current'
+    :total="count">
+  </el-pagination>
+</div>
 
 </div>
     
@@ -50,12 +57,15 @@ export default {
   name: "adminlist",
   data() {
     return {
-      userlist: []
+      userlist: [],
+      count: 0,
+      size: 6
     };
   },
   created() {
-    this.$axios.get("/user").then(res => {
-      console.log(res.data);
+    this.$axios.get("/user", { pn: 1, size: this.size }).then(res => {
+      console.log(res);
+
       if (res.code == 401) {
         this.$message({
           showClose: true,
@@ -67,20 +77,35 @@ export default {
         }, 2000);
       }
       this.userlist = res.data;
+      this.count = res.count;
     });
+  },
+  methods: {
+    current(e) {
+      this.$axios.get("/user", { pn: e, size: this.size }).then(res => {
+        this.userlist = res.data;
+      });
+    }
   }
 };
 </script>
 
 <style>
 .userlistimg {
-  width: 80px;
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
 }
 .navto {
   height: 20px;
   padding: 10px;
   font-weight: 400;
   line-height: 30px;
+}
+.block {
+  position: fixed;
+  bottom: 20px;
+  right: 0;
 }
 </style>
 

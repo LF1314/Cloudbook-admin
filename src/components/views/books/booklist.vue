@@ -1,5 +1,5 @@
 <template>
-<div>
+<div style="padding:20px">
     <div>
         <h3>书籍列表</h3>
     </div>
@@ -34,7 +34,7 @@
       label="操作"
       >
       <template slot-scope="scope">
-          <el-button type="success">
+          <el-button type="success" @click="jumtochange(scope.row._id)">
               编辑
           </el-button>
 
@@ -61,6 +61,9 @@ export default {
         this.bookData = res.data;
         console.log(res.data);
       });
+    },
+    jumtochange(id) {
+      this.$router.push({ path: "editbook", query: { id } });
     }
   },
   created() {
@@ -72,6 +75,6 @@ export default {
 
 <style>
 .bookimg {
-  height: 40px;
+  height: 60px;
 }
 </style>
