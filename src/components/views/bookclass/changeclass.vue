@@ -16,7 +16,7 @@
       <div>
            
          <img :src="datas.icon" alt="icon" class="iconimgs">
-          <span>封面</span>
+          <span>过时封面</span>
       </div>
         
 
@@ -103,6 +103,8 @@ export default {
 }
 .iconimgs {
   width: 100px;
+  height: 100px;
+  border-radius: 10px;
 }
 .wrapers {
   padding-left: 10px;
@@ -137,6 +139,7 @@ export default {
 }
 .btn {
   width: 100px;
+  margin-top: 30px;
   margin-left: 70px;
 }
 </style>

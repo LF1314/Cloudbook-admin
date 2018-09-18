@@ -39,8 +39,8 @@
       label="操作">
       <template slot-scope="scope">
           <el-button type="success" @click="cometodetail(scope.row._id,classdetail)">查看详情</el-button>
-          <el-button type="danger" @click="delteclass(scope.row._id)">删除</el-button>
-          <el-button type="warning" @click="cometodetail(scope.row._id,changeclass)">编辑</el-button>
+         <i class="el-icon-delete"></i> <el-button type="danger" @click="delteclass(scope.row._id)">删除</el-button>
+         <i class="el-icon-edit"></i> <el-button type="warning" @click="cometodetail(scope.row._id,changeclass)">编辑</el-button>
    
       </template>
     </el-table-column>
@@ -126,6 +126,10 @@ export default {
   position: fixed;
   bottom: 20px;
   right: 0;
+}
+.el-icon-delete,
+.el-icon-edit {
+  font-size: 18px;
 }
 </style>
 

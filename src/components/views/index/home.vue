@@ -117,8 +117,9 @@ export default {
     loginout() {
       this.$axios.get("/logout").then(res => {
         console.log(res);
-        if (res.code == 400) {
+        if (res.code == 200) {
           this.$router.push("/");
+          this.$message.success({ message: res.msg });
         }
       });
       console.log("...");

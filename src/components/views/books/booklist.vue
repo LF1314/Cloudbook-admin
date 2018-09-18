@@ -23,7 +23,7 @@
     <el-table-column
       prop="title"
       label="书名"
-      width="230">
+      width="260">
     </el-table-column>
     <el-table-column
       prop="author"
@@ -34,7 +34,8 @@
       label="操作"
       >
       <template slot-scope="scope">
-          <el-button type="success" @click="jumtochange(scope.row._id)">
+          <i class="el-icon-edit"></i>
+          <el-button type="info" @click="jumtochange(scope.row._id)">
               编辑
           </el-button>
 
@@ -44,6 +45,14 @@
   </el-table>
 </template>
 
+<div class="booklist">
+  <el-pagination
+    :page-size='size'
+    layout="prev, pager, next"
+    @current-change='mycurrent'
+    :total="30">
+  </el-pagination>
+</div>
 </div>
     
 </template>
@@ -52,29 +61,42 @@ export default {
   name: "booklist",
   data() {
     return {
-      bookData: []
+      size: 5,
+      bookData: [],
+      pn: 1
     };
   },
   methods: {
-    getbooks() {
-      this.$axios.get("/book").then(res => {
+    getbooks(pns) {
+      this.$axios.get("/book", { pn: pns, size: this.size }).then(res => {
         this.bookData = res.data;
-        console.log(res.data);
+        console.log(res);
       });
     },
     jumtochange(id) {
       this.$router.push({ path: "editbook", query: { id } });
+    },
+    mycurrent(e) {
+      this.getbooks(e);
     }
   },
   created() {
-    this.getbooks();
+    this.getbooks(this.pn);
   }
 };
 </script>
 
 
-<style>
+<style >
 .bookimg {
   height: 60px;
+}
+.el-icon-edit {
+  font-size: 20px;
+}
+.booklist {
+  position: absolute;
+  bottom: 20p;
+  right: 10px;
 }
 </style>

@@ -7,7 +7,6 @@
    <div class="userinfo">
        <div class="userimg">
          <pic v-model="books.img">
-
          </pic>
        </div>
        <div class="item">

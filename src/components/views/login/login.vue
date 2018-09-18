@@ -11,7 +11,6 @@
                 <el-form-item label="密码:" prop="password">
                 <el-input v-model="ruleForm.password" type='password' placeholder="请输入密码"></el-input>
             </el-form-item>
-
             <el-button @click.native="submitForm('ruleForm')" class="loginbtn" type="primary">
                 登录
             </el-button>
@@ -71,6 +70,7 @@ export default {
         console.log(res);
         if (res.code == 200) {
           this.$store.state.userinfo = res.data;
+          this.$store.commit("CHANGEPASSWORD", this.ruleForm.password);
           this.$message({
             showClose: true,
             message: "登录成功！",
@@ -79,6 +79,8 @@ export default {
           setTimeout(() => {
             this.$router.push({ path: "/home" });
           }, 1000);
+        } else {
+          this.$message.error(res.msg);
         }
       });
     }

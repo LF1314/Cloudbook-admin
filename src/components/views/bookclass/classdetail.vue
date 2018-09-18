@@ -34,7 +34,7 @@
       label="操作">
       <template slot-scope="scope">
           <el-button type="success">查看详情</el-button>
-          <el-button type="waring">删除</el-button>
+          <i class="el-icon-delete"></i> <el-button type="waring">删除</el-button>
       </template>
     </el-table-column>
   </el-table>

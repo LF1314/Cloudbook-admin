@@ -4,6 +4,8 @@ import Vue from 'vue'
 import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex);
 const state = {
+  password: '',
+  allbooks: [],
   userinfo: {
     username: '',
     desc: "",
@@ -16,6 +18,12 @@ const store = new Vuex.Store({
     mutations: {
       SETUSSERINFO(state, userdata) {
         state.userinfo = userdata
+      },
+      CHANGEPASSWORD(state, pwd) {
+        state.password = pwd
+      },
+      GETALLBOOKS(state, allbooks) {
+        state.allbooks = allbooks
       }
     },
 

@@ -12,6 +12,11 @@
     :data="swperData"
     stripe
     style="width: 100%">
+     <el-table-column
+      prop="index"
+      label="排序"
+      width="100">
+    </el-table-column>
     <el-table-column
       label="封面"
       width="180">
@@ -34,7 +39,7 @@
         <el-button type="info">
           查看详情
         </el-button>
-          <el-button type="success">
+          <el-button type="success" @click="changeswper(scope.row.book.title,scope.row._id)">
           修改
         </el-button>
       </template>
@@ -79,6 +84,12 @@ export default {
     current(e) {
       // console.log(e);
       this.getswper(e);
+    },
+    changeswper(booktitle, swperid) {
+      this.$router.push({
+        path: "editswper",
+        query: { booktitle: booktitle, swiperid: swperid }
+      });
     }
   }
 };

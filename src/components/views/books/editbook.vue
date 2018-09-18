@@ -1,6 +1,14 @@
 
 // 修改图书
 <template>
+<div>
+  <div class="eliconarrowright">
+  <el-breadcrumb separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item :to="{ path: 'index' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{path: 'booklist'}">书籍列表</el-breadcrumb-item>
+        <el-breadcrumb-item >编辑书籍</el-breadcrumb-item>
+  </el-breadcrumb>
+  </div>
 <div class="booeditwraper">
 
     <h4>修改图书</h4>
@@ -32,6 +40,8 @@
 </div>
 </div>
      
+</div>
+
 </template>
 
 
@@ -92,7 +102,12 @@ export default {
 <style scoped>
 .booeditwraper {
   width: 500px;
-  padding: 40px;
+  padding: 20px;
+}
+.eliconarrowright {
+  margin: 10px;
+  border-bottom: 2px dashed #f4f4f4;
+  padding-bottom: 10px;
 }
 .bookimgs {
   position: absolute;

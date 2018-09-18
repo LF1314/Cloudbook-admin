@@ -127,8 +127,15 @@ export default new Router({
           name: 'uploadimg',
           component: () =>
             import ('@/components/views/test/uploadimg')
+        },
+        //修改轮播图信息
+        ,
+        {
+          path: "editswper",
+          name: "editswper",
+          component: () =>
+            import ('@/components/views/swper/editswper')
         }
-
 
       ]
     }
