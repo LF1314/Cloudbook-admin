@@ -95,11 +95,12 @@ export default {
 <style>
 .inner {
   width: 500px;
-  padding: 10px;
+  padding: 20px;
   margin-top: 30px;
   margin-left: 40px;
-  border: 2px solid #f4f4f4;
+  border: 3px dashed #f4f4f4;
   border-radius: 4px;
+  border-radius: 10px;
 }
 .navto {
   height: 20px;

@@ -1,6 +1,13 @@
 
 <template>
    <div>
+       <div class="swiperheader">
+        <el-breadcrumb separator-class="el-icon-arrow-right">
+            <el-breadcrumb-item :to="{ path: 'index' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: 'swperlist' }">轮播图列表</el-breadcrumb-item>
+             <el-breadcrumb-item >修改轮播图</el-breadcrumb-item>
+        </el-breadcrumb>
+        </div>
         <div class="headerswper">
          <h3>
              change 轮播
@@ -8,21 +15,21 @@
         </div>
         <div class="eidtswper">
             <el-form label-position=right label-width="140px" :model="swperdata">
-                    <el-form-item label="轮播图title">
+              <el-form-item label="轮播图title">
                         <el-input v-model="swperdata.title"></el-input>
-                    </el-form-item>
-                    <el-form-item label="轮播图对应的书籍">
-                         <el-select v-model="booktitle" placeholder="请选择图书">
+              </el-form-item>
+               <el-form-item label="轮播图对应的书籍"> 
+                  <el-select v-model="booktitle" placeholder="请选择图书">
                             <el-option v-for="(item,index) in books" :key="index"
                              :value="item.title">{{item.title}}</el-option>
-                        </el-select>
-                    </el-form-item>
-                    <el-form-item label="索引">
+                  </el-select>
+               </el-form-item>
+              <el-form-item label="索引">
                         <el-input v-model="swperdata.index" class="suoyin"></el-input>
-                    </el-form-item> 
-                    <el-button type="primary" class="cahngeswiperbtn" @click="editswiper">
+              </el-form-item> 
+               <el-button type="primary" class="cahngeswiperbtn" @click="editswiper">
                         修改
-                    </el-button>
+               </el-button>
             </el-form>
          
         </div>
@@ -110,6 +117,10 @@ export default {
  
 
 <style scoped>
+.swiperheader {
+  padding: 10px;
+  border-bottom: 2px dashed #f5f5f5;
+}
 .eidtswper {
   width: 400px;
   margin-top: 50px;
@@ -117,7 +128,7 @@ export default {
 }
 .swiperimg {
   position: absolute;
-  top: 150px;
+  top: 170px;
   right: 300px;
   text-align: center;
 }

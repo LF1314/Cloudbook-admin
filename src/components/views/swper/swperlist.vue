@@ -1,12 +1,10 @@
 <template>
 <div class="swperwraper">
     <div class="breadhead">
- <el-breadcrumb separator-class="el-icon-arrow-right">
-  <el-breadcrumb-item :to="{ path: 'index' }">首页</el-breadcrumb-item>
-  <el-breadcrumb-item>轮播图列表</el-breadcrumb-item>
- 
-</el-breadcrumb>
-     
+        <el-breadcrumb separator-class="el-icon-arrow-right">
+            <el-breadcrumb-item :to="{ path: 'index' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item>轮播图列表</el-breadcrumb-item>
+        </el-breadcrumb>
     </div>
     <el-table
     :data="swperData"
@@ -39,6 +37,9 @@
         <el-button type="info">
           查看详情
         </el-button>
+        <el-button type="text" @click="delswiper(scope.row._id)">
+          删除
+        </el-button>
           <el-button type="success" @click="changeswper(scope.row.book.title,scope.row._id)">
           修改
         </el-button>
@@ -52,7 +53,7 @@
     :page-size='size'
     layout="prev, pager, next"
     @current-change='current'
-    :total="15">
+    :total="100">
   </el-pagination>
 </div>
 </div>  
@@ -71,12 +72,21 @@ export default {
     this.getswper(this.pn);
   },
   methods: {
+    delswiper(id) {
+      let ids = [id];
+      this.$axios.post(`/swiper/delete`, { ids }).then(res => {
+        if (res.code == 200) {
+          this.$message.success({ message: "删除成功！！" });
+          this.getswper(1);
+        }
+      });
+    },
     getswper(pns) {
       this.$axios.get("/swiper", { pn: pns, size: 5 }).then(res => {
         console.log(res);
         this.swperData = res.data;
         if (res.data.length == 0) {
-          this.$message.error("到底了！！！！");
+          this.$message.error("到底了！！");
         }
       });
     },

@@ -41,34 +41,27 @@
           <el-button type="success" @click="cometodetail(scope.row._id,classdetail)">查看详情</el-button>
          <i class="el-icon-delete"></i> <el-button type="danger" @click="delteclass(scope.row._id)">删除</el-button>
          <i class="el-icon-edit"></i> <el-button type="warning" @click="cometodetail(scope.row._id,changeclass)">编辑</el-button>
-   
       </template>
     </el-table-column>
   </el-table>
 </template>
-
 </div>
-
 <div class="block">
   <el-pagination
     :page-size='size'
     layout="prev, pager, next"
     @current-change='current'
-    :total="15">
+    :total="count">
   </el-pagination>
 </div>
 </div>
-
- 
 </template>
-
-
-
 <script>
 export default {
   name: "classlist",
   data() {
     return {
+      count: 0,
       classdetail: "classdetail",
       changeclass: "changeclass",
       classData: [],
@@ -76,8 +69,28 @@ export default {
       size: 6
     };
   },
-
   methods: {
+    //获取所有的分类
+    getalltype() {
+      // console.log("....");
+      let pn = 1;
+      let _this = this;
+      let typearr = [];
+      function gettype(pn) {
+        _this.$axios.get("/category", { pn: pn, size: 10 }).then(res => {
+          if (res.data.length == 0) {
+            _this.count = typearr.length;
+            console.log(_this.count);
+            _this.$store.commit("GETALLTYPES", typearr);
+          } else {
+            typearr = [...typearr, ...res.data];
+            pn++;
+            gettype(pn);
+          }
+        });
+      }
+      gettype(pn);
+    },
     //获取分类
     getdata(pns) {
       this.$axios.get("/category", { pn: pns, size: this.size }).then(res => {
@@ -99,11 +112,17 @@ export default {
       });
     },
     current(e) {
-      this.getdata(e);
+      if (e - 1 != 0) {
+        let a = (e - 1) * this.size;
+        this.classData = this.$store.state.alltypes.slice(a, a + this.size);
+      } else {
+        this.classData = this.$store.state.alltypes.slice(e - 1, e + 5);
+      }
     }
   },
   created() {
     this.getdata(this.pn);
+    this.getalltype(this.pn);
   }
 };
 </script>

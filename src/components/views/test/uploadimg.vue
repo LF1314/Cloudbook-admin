@@ -13,7 +13,7 @@
         <div class="input">
             <input type="file" @change="upimgs">
             <div>
-                <img :src="imgurl" alt="" class="myimgss">
+                <img :src="imgurl" alt="" class="myimgss" >
             </div>
             <!-- <el-button type="success" @click="uploadimgs">上传图片</el-button> -->
         </div>
@@ -27,6 +27,9 @@
        <div class="checkbox">
            <radio></radio>
        </div>
+       <div>
+         <lunbotu v-model="imgurls"></lunbotu>
+       </div>
   </div>
 
 </template>
@@ -36,16 +39,21 @@ export default {
   name: "uploadimg",
   components: {
     uploadCom: () => import("./upload-Com"),
-    radio: () => import("./radio")
+    radio: () => import("./radio"),
+    lunbotu: () => import("../pic/lunbotu")
   },
   data() {
     return {
+      imgurls:[],
       imgurl: "",
       token: ""
     };
   },
   created() {
     this.gettoekn();
+    this.$axios.get('/swiper',{pn:1,size:7}).then(res=>{
+      this.imgurls = res.data
+    })
   },
   methods: {
     gettoekn() {

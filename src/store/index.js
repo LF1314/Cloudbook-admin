@@ -6,6 +6,7 @@ Vue.use(Vuex);
 const state = {
   password: '',
   allbooks: [],
+  alltypes: [],
   userinfo: {
     username: '',
     desc: "",
@@ -22,9 +23,15 @@ const store = new Vuex.Store({
       CHANGEPASSWORD(state, pwd) {
         state.password = pwd
       },
+      //获取所有的书籍
       GETALLBOOKS(state, allbooks) {
         state.allbooks = allbooks
+      },
+      //获取所有的分类
+      GETALLTYPES(state, alltype) {
+        state.alltypes = alltype
       }
+
     },
 
     plugins: [createPersistedState({
