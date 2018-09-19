@@ -8,7 +8,6 @@
     :data="bookData"
     style="width: 100%">
     <el-table-column
-     
       prop="index"
       width="100"
       label="index">
@@ -38,23 +37,22 @@
           <el-button type="info" @click="jumtochange(scope.row._id)">
               编辑
           </el-button>
-
+            <el-button type="info" @click="$selfmethod.getbookdetail(scope.row._id)">
+              查看详情
+          </el-button>
       </template>
     </el-table-column>
-  
   </el-table>
 </template>
-
 <div class="booklist">
   <el-pagination
     :page-size='size'
     layout="prev, pager, next"
     @current-change='mycurrent'
-    :total="30">
+    :total="count">
   </el-pagination>
 </div>
-</div>
-    
+</div> 
 </template>
 <script>
 export default {
@@ -62,6 +60,7 @@ export default {
   data() {
     return {
       size: 5,
+      count: 0,
       bookData: [],
       pn: 1
     };
@@ -82,11 +81,11 @@ export default {
   },
   created() {
     this.getbooks(this.pn);
+    this.$selfmethod.getbooks();
+    this.count = this.$store.state.allbooks.length;
   }
 };
 </script>
-
-
 <style >
 .bookimg {
   height: 60px;

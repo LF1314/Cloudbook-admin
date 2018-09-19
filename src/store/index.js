@@ -5,6 +5,7 @@ import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex);
 const state = {
   password: '',
+  allswipers: [],
   allbooks: [],
   alltypes: [],
   userinfo: {
@@ -30,6 +31,10 @@ const store = new Vuex.Store({
       //获取所有的分类
       GETALLTYPES(state, alltype) {
         state.alltypes = alltype
+      },
+      //获取所有的轮播图
+      GETALLSWIPER(state, allswiper) {
+        state.allswipers = allswiper
       }
 
     },

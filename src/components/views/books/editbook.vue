@@ -88,7 +88,6 @@ export default {
   created() {
     this.bookid = this.$route.query.id;
     // console.log(this.bookid);
-
     this.$axios.get(`/book/${this.bookid}`).then(res => {
       console.log(res.data);
       this.bookdata = res.data;

@@ -53,7 +53,7 @@
     :page-size='size'
     layout="prev, pager, next"
     @current-change='current'
-    :total="100">
+    :total="count">
   </el-pagination>
 </div>
 </div>  
@@ -63,6 +63,7 @@ export default {
   name: "swperlist",
   data() {
     return {
+      count: 0,
       swperData: [],
       pn: 1,
       size: 5
@@ -70,6 +71,8 @@ export default {
   },
   created() {
     this.getswper(this.pn);
+    this.$selfmethod.getallswiper();
+    this.count = this.$store.state.allswipers.length;
   },
   methods: {
     delswiper(id) {

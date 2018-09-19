@@ -62,38 +62,19 @@ export default {
         if (item.title == this.typetitle) {
           this.books.typeId = item._id;
           console.log(this.books);
+          this.$axios.post('/book',this.books).then(res=>{
+            if(res.code == 200){
+              this.$message.success({message:"添加成功！"})
+              this.$router.push('booklist')
+            }
+          })
         }
       });
-      // this.$axios.post("/book", { data: this.books }).then(res => {
-      //   if (res.code == 200) {
-      //     console.log("chengong");
-      //   }
-      // });
-    },
-    //获取所有的分类
-    getalltype() {
-      // console.log("....");
-      let pn = 1;
-      let _this = this;
-      let typearr = [];
-      function gettype(pn) {
-        _this.$axios.get("/category", { pn: pn, size: 10 }).then(res => {
-          if (res.data.length == 0) {
-            _this.alltypes = typearr;
-            console.log(_this.alltypes);
-            _this.$store.commit("GETALLTYPES", typearr);
-          } else {
-            typearr = [...typearr, ...res.data];
-            pn++;
-            gettype(pn);
-          }
-        });
-      }
-      gettype(pn);
     }
   },
   created() {
-    this.getalltype();
+    this.$selfmethod.getalltype();
+    this.alltypes = this.$store.state.alltypes;
   }
 };
 </script>

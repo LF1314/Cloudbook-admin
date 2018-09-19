@@ -76,6 +76,8 @@
                   <template slot="title">分类管理</template>
                   <el-menu-item index="classlist">分类列表</el-menu-item>
                   <el-menu-item index="addclass">添加分类</el-menu-item>
+                  <el-menu-item index="addbooktoclass">添加书籍到分类</el-menu-item>
+
                 </el-menu-item-group>
           </el-submenu>
 

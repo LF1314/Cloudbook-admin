@@ -136,6 +136,21 @@ export default new Router({
           component: () =>
             import ('@/components/views/swper/editswper')
         }
+        //查看书籍详情
+        , {
+          path: 'bookdetail',
+          name: "bookdetail",
+          component: () =>
+            import('@/components/views/books/bookdetail')
+        },
+        //添加书籍到分类
+        {
+          path: 'addbooktoclass',
+          name: 'addbooktoclass',
+          component: () =>
+            import('@/components/views/bookclass/addbooktoclass')
+        }
+
 
       ]
     }

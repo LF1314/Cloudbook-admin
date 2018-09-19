@@ -48,32 +48,9 @@ export default {
   },
   created() {
     this.userinfo = this.$store.state.userinfo;
-    console.log(this.userinfo);
-    // this.$axios.get("/swiper", { pn: 1, size: 7 }).then(res => {
-    //   this.imgurls = res.data;
-    // });
-    this.getallswiper();
-  },
-  methods: {
-    //获取所有的轮播图
-    getallswiper() {
-      let allswiper = [];
-      let pn = 1;
-      let _this = this;
-      function getsw(pn) {
-        _this.$axios.get("/swiper", { pn: pn, size: 10 }).then(res => {
-          if (res.data.length == 0) {
-            _this.imgurls = allswiper;
-            console.log(_this.imgurls);
-          } else {
-            allswiper = [...allswiper, ...res.data];
-            pn++;
-            getsw(pn);
-          }
-        });
-      }
-      getsw(pn);
-    }
+    // console.log(this.userinfo);
+    this.$selfmethod.getallswiper();
+    this.imgurls = this.$store.state.allswipers;
   }
 };
 </script>

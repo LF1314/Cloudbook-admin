@@ -13,16 +13,15 @@
    </h3>
    <div class="userinfo">
        <div class="userimgss">
-      <div>
-           
-         <img :src="datas.icon" alt="icon" class="iconimgs">
-          <span>过时封面</span>
-      </div>
+          <div>
+              
+            <img :src="datas.icon" alt="icon" class="iconimgs">
+              <span>过时封面</span>
+          </div>
         
 
         <div>
-             <pic v-model="datas.icon">
-         </pic>
+             <pic v-model="datas.icon"></pic>
          <span>上传新图片</span>
         </div>
         
@@ -35,14 +34,8 @@
            <span>索引：</span>
            <el-input type="text" placeholder="索引" v-model="datas.index"></el-input>
        </div>
-      
-      
          <div>
-           <el-button type="success" class="btn" @click="updataclass">
-               更新 
-           </el-button>
- 
-      
+           <el-button type="success" class="btn" @click="updataclass">更新</el-button>
         </div>
 </div>
  </div>

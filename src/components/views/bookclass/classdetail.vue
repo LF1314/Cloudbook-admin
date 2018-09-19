@@ -33,8 +33,8 @@
       <el-table-column
       label="操作">
       <template slot-scope="scope">
-          <el-button type="success">查看详情</el-button>
-          <i class="el-icon-delete"></i> <el-button type="waring">删除</el-button>
+          <el-button type="success"  @click="$selfmethod.getbookdetail(scope.row._id)">查看详情</el-button>
+          <el-button icon="el-icon-delete" type="waring">删除</el-button>
       </template>
     </el-table-column>
   </el-table>

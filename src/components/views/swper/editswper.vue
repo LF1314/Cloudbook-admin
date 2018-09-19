@@ -61,26 +61,6 @@ export default {
     pic
   },
   methods: {
-    //获取所有的书籍
-    getbooks() {
-      let pn = 1;
-      let allbook = [];
-      let _this = this;
-      function getallbook(pn) {
-        _this.$axios.get("/book", { pn: pn, size: 10 }).then(res => {
-          if (res.data.length == 0) {
-            _this.books = allbook;
-            _this.$store.commit("GETALLBOOKS", _this.books);
-            console.log(_this.books);
-          } else {
-            allbook = [...allbook, ...res.data];
-            pn++;
-            getallbook(pn);
-          }
-        });
-      }
-      getallbook(pn);
-    },
     //获取轮播图信息，
     getswiper(id) {
       this.$axios.get(`/swiper/${id}`).then(res => {
@@ -107,9 +87,11 @@ export default {
     }
   },
   created() {
-    this.getbooks();
     this.swiperid = this.$route.query.swiperid;
     this.booktitle = this.$route.query.booktitle;
+    //获取所有的书籍信息
+    this.$selfmethod.getbooks();
+    this.books = this.$store.state.allbooks;
     this.getswiper(this.swiperid);
   }
 };

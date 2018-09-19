@@ -39,8 +39,8 @@
       label="操作">
       <template slot-scope="scope">
           <el-button type="success" @click="cometodetail(scope.row._id,classdetail)">查看详情</el-button>
-         <i class="el-icon-delete"></i> <el-button type="danger" @click="delteclass(scope.row._id)">删除</el-button>
-         <i class="el-icon-edit"></i> <el-button type="warning" @click="cometodetail(scope.row._id,changeclass)">编辑</el-button>
+          <el-button icon="el-icon-delete" type="danger" @click="delteclass(scope.row._id)">删除</el-button>
+          <el-button icon="el-icon-edit" type="warning" @click="cometodetail(scope.row._id,changeclass)">编辑</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -70,28 +70,6 @@ export default {
     };
   },
   methods: {
-    //获取所有的分类
-    getalltype() {
-      // console.log("....");
-      let pn = 1;
-      let _this = this;
-      let typearr = [];
-      function gettype(pn) {
-        _this.$axios.get("/category", { pn: pn, size: 10 }).then(res => {
-          if (res.data.length == 0) {
-            _this.count = typearr.length;
-            console.log(_this.count);
-            _this.$store.commit("GETALLTYPES", typearr);
-          } else {
-            typearr = [...typearr, ...res.data];
-            pn++;
-            gettype(pn);
-          }
-        });
-      }
-      gettype(pn);
-    },
-    //获取分类
     getdata(pns) {
       this.$axios.get("/category", { pn: pns, size: this.size }).then(res => {
         console.log(res);
@@ -122,7 +100,8 @@ export default {
   },
   created() {
     this.getdata(this.pn);
-    this.getalltype(this.pn);
+    this.$selfmethod.getalltype();
+    this.count = this.$store.state.alltypes.length;
   }
 };
 </script>
