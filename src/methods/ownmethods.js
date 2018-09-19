@@ -3,6 +3,12 @@ import {
 } from '../until/until.js'
 import store from '../store/index'
 import router from '../router'
+import {
+  resolve
+} from 'path';
+import {
+  rejects
+} from 'assert';
 const selfmethod = {
   //获取所有的分类、传入需要赋值的参数调用完成后的数据放入vuex中
   getalltype() {
@@ -77,6 +83,7 @@ const selfmethod = {
       }
     })
 
-  }
+  },
+
 }
 export default selfmethod;

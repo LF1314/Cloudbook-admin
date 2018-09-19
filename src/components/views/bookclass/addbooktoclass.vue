@@ -5,11 +5,11 @@
            <h4>添加书籍到分类</h4>
        </div>
        <div class="addboooktoclass">
-            <el-select v-model="booktitle" placeholder="请选择对应的书籍">
-            <el-option v-for="(item,index) in books" :key="index" :value="item.title"></el-option>
+            <el-select v-model="bookid" placeholder="请选择对应的书籍">
+            <el-option v-for="(item,index) in books" :key="index" :label="item.title" :value="item._id"></el-option>
             </el-select>
-            <el-select v-model="typetitle" placeholder="请选择对应的分类">
-            <el-option v-for="(item,index) in types" :key="index" :value="item.title"></el-option>
+            <el-select v-model="typeid" placeholder="请选择对应的分类">
+            <el-option v-for="(item,index) in types" :key="index" :label="item.title" :value="item._id"></el-option>
             </el-select>
             <el-button type="primary" @click="handlebook">提交</el-button>
        </div>
@@ -22,29 +22,20 @@ export default {
     return {
       books: [],
       types: [],
-      booktitle: "",
-      typetitle: ""
+      bookid: "",
+      typeid: ""
     };
   },
   methods: {
     handlebook() {
-      let bookid = "";
-      let typeid = "";
-      this.books.forEach(ele => {
-        if (this.booktitle == ele.title) {
-          bookid = ele._id;
-        }
-      });
-      this.types.forEach(ele => {
-        if (ele.title == this.typetitle) {
-          typeid = ele._id;
-        }
-      });
-      this.$axios.post(`/category/${typeid}/book/${bookid}`).then(res => {
-        if (res.code == 200) {
-          this.$message.success({ message: "修改成功！" });
-        }
-      });
+      this.$axios
+        .post(`/category/${this.typeid}/book/${this.bookid}`)
+        .then(res => {
+          if (res.code == 200) {
+            this.$message.success({ message: "修改成功！" });
+            this.$router.push("classlist");
+          }
+        });
     }
   },
   created() {

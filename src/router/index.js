@@ -149,6 +149,13 @@ export default new Router({
           name: 'addbooktoclass',
           component: () =>
             import('@/components/views/bookclass/addbooktoclass')
+        },
+        //轮播图更新上传版
+        {
+          path: 'newaddswiper',
+          name: 'newswiper',
+          component: () =>
+            import('@/components/views/swper/newaddswiper')
         }
 
 

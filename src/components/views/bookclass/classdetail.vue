@@ -58,26 +58,17 @@ export default {
 
   methods: {
     getdata() {
-      this.$axios.get(`/category/${this.typeid}`).then(res => {
-        // console.log(res.data);
-        let arr = [];
-        this.title = res.data.title;
-        res.data.books.map(item => {
-          this.$axios.get(`/book/${item}`).then(res => {
-            arr.push(res.data);
-            return item;
-          });
+      this.$axios
+        .get(`/category/${this.typeid}/books`, { pn: 1, size: 99 })
+        .then(res => {
+          this.booksdata = res.data.books;
         });
-        this.booksdata = arr;
-      });
     }
   },
   created() {
     this.typeid = this.$route.query.id;
-    console.log(this.typeid);
     this.getdata();
-  },
-  mounted() {}
+  }
 };
 </script>
 

@@ -63,6 +63,7 @@
                   <template slot="title">轮播图管理</template>
                   <el-menu-item index="swperlist">轮播图列表</el-menu-item>
                   <el-menu-item  index="addswper">添加轮播图</el-menu-item>
+                   <el-menu-item  index="newaddswiper">添加轮播图新版</el-menu-item>
                 </el-menu-item-group>
               </el-submenu>
 

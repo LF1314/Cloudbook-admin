@@ -64,12 +64,6 @@ export default {
     pic
   },
   methods: {
-    getbooks() {
-      this.$axios.get("/book").then(res => {
-        this.books = res.data;
-        console.log(this.books);
-      });
-    },
     submit() {
       this.books.forEach(item => {
         if (item.title == this.form.booktitle) {
@@ -87,11 +81,11 @@ export default {
     }
   },
   mounted() {
-    this.getbooks();
+    this.$selfmethod.getbooks();
+    this.books = this.$store.state.allbooks;
   }
 };
 </script>
-
 <style>
 .inner {
   width: 500px;

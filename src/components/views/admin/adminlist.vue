@@ -36,7 +36,7 @@
       label="操作">
       <template slot-scope="scope">
       <el-button type="success">查看详情</el-button>
-      <el-button type="warning">删除</el-button>
+      <el-button type="warning" @click="delusers(scope.row._id)">删除</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -65,7 +65,6 @@ export default {
   created() {
     this.$axios.get("/user", { pn: 1, size: this.size }).then(res => {
       console.log(res);
-
       if (res.code == 401) {
         this.$message({
           showClose: true,
@@ -85,6 +84,10 @@ export default {
       this.$axios.get("/user", { pn: e, size: this.size }).then(res => {
         this.userlist = res.data;
       });
+    },
+    delusers(id) {
+      let userIds = [id];
+      console.log(userIds);
     }
   }
 };
@@ -93,7 +96,7 @@ export default {
 <style>
 .userlistimg {
   height: 40px;
-  width: 40px;
+  width: 60px;
   border-radius: 20px;
 }
 .navto {

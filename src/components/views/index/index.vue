@@ -96,7 +96,7 @@ export default {
 .userimgs img {
   display: block;
   width: 100px;
-  height: 100px;
+  height: 70px;
   border-radius: 50%;
   margin: 30px;
 }
