@@ -1,11 +1,11 @@
 import axios from 'axios'
 import router from 'vue-router'
-
+const baseURL = process.env.BASE_URL
 import {
   Message
 } from "element-ui";
 const instance = axios.create({
-  baseURL: '/api/admin',
+  baseURL,
   timeout: 10000,
 
 })
